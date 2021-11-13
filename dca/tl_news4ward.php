@@ -231,7 +231,7 @@ $GLOBALS['TL_DCA']['tl_news4ward'] = array
 			'search'                  => true,
 			'inputType'               => 'text',
 			'eval'                    => array('trailingSlash'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
-            'sql'                     => "carchar(255) NOT NULL default ''"
+            'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'alias' => array
 		(
