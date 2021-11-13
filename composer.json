@@ -29,8 +29,8 @@
     "source": "https://github.com/marcel-mathias-nolte/contao-photoblog"
   },
   "require": {
-    "php": ">=5.3",
-    "contao/core-bundle": "^3.2.1 || ^4.4",
+    "php": ">=7.2",
+    "contao/core-bundle": "4.*",
     "contao-community-alliance/composer-plugin": "^2.4 || ^3.0",
     "menatwork/contao-multicolumnwizard": "~3",
     "psi/tags-widget": "~2"
