@@ -29,7 +29,6 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 			array('tl_news4ward_article', 'checkPermission'),
 			array('tl_news4ward_article', 'generateFeed'),
 			array('\News4ward\Helper', 'setFiletreePath'),
-			array('\News4ward\PushHelper', 'onLoad'),
 		),
 		'onsubmit_callback' 		  => array(array('tl_news4ward_article', 'scheduleUpdate')),
         'sql' => array
@@ -71,10 +70,6 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
                 'icon'                => 'visible.svg',
                 'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,\'%s\')"',
                 'button_callback'     => array('tl_news4ward_article', 'toggleIcon')
-            ),
-            'sendPush' => array(
-                'href' => 'act=edit&sendPush=1',
-                'icon' => 'up.svg'
             ),
 			'edit' => array
 			(
