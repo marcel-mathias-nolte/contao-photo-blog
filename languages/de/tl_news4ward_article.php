@@ -79,3 +79,4 @@ $GLOBALS['TL_LANG']['tl_news4ward_article']['copy']       = array('Beitrag dupli
 $GLOBALS['TL_LANG']['tl_news4ward_article']['cut']        = array('Beitrag verschieben', 'Beitrag ID %s verschieben');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['delete']     = array('Beitrag löschen', 'Beitrag ID %s löschen');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['toggle']     = array('Beitrag veröffentlichen/unveröffentlichen', 'Beitrag ID %s veröffentlichen/unveröffentlichen');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['sendPush']   = array('Push-Benachrichtigung versenden','');

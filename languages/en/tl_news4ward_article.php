@@ -73,3 +73,4 @@ $GLOBALS['TL_LANG']['tl_news4ward_article']['copy']       = array('Duplicate ent
 $GLOBALS['TL_LANG']['tl_news4ward_article']['cut']        = array('Move entry', 'Move entry ID %s');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['delete']     = array('Delete entry', 'Delete entry ID %s');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['toggle']     = array('Publish/unpublish entry', 'Publish/Unpublish entry ID %s');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['sendPush']   = array('Send a push notification', '');
