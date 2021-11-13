@@ -17,6 +17,7 @@ ClassLoader::addClasses(array
 	'Psi\News4ward\Helper'       		            => 'system/modules/news4ward/Helper.php',
     'Psi\News4ward\Module\Tags'   	                => 'system/modules/news4ward/Module/Tags.php',
     'Psi\News4ward\TagsHelper'   		            => 'system/modules/news4ward/TagsHelper.php',
+    'Psi\News4ward\PushHelper'   		            => 'system/modules/news4ward/PushHelper.php',
 	'Psi\News4ward\Model\ArticleModel'       		=> 'system/modules/news4ward/Model/ArticleModel.php',
 	'Psi\News4ward\Model\ArchiveModel'       		=> 'system/modules/news4ward/Model/ArchiveModel.php',
 ));
