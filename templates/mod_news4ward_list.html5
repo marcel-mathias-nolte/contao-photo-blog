@@ -1,0 +1,27 @@
+
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<div data-pagination="page_g<?= $this->id ?>" data-pagination-type="add">
+    <?php foreach($this->articles as $article) echo $article; ?>
+    <?= $this->pagination ?>
+</div>
+<script>
+    $(function() {
+        $(window).on("scroll", function() {
+            var scrollHeight = Math.round($(document).height() / 10);
+            var scrollPosition = Math.round(($(window).height() + $(window).scrollTop()) / 10);
+            if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+                var next = $('.pagination .next');
+                if (next.length > 0)
+                    next.click();
+            }
+        });
+    });
+</script>
+</div>
+<!-- indexer::continue -->

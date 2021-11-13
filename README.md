@@ -1,50 +1,46 @@
-# Contao 4 skeleton bundle
+News4ward
+=============
 
-Contao is an Open Source PHP Content Management System for people who want a
-professional website that is easy to maintain. Visit the [project website][1]
-for more information.
+Enhanced news/blog extension for the Contao CMS.
 
-This is my fork of the official skeleton bundle prepared for my own bundles
+Features
+--------
+* ContentElements like the standard articles
+* [Tagcloud] (https://github.com/psi-4ward/news4ward_tags)
+* [Comments] (https://github.com/psi-4ward/news4ward_comments)
+* [Categories] (https://github.com/psi-4ward/news4ward_categories)
+* [Multiple-Categories] (https://github.com/psi-4ward/news4ward_multicategories)
+* [Related-Articles] (https://github.com/psi-4ward/news4ward_related)
+* [Archive-Menu] (https://github.com/psi-4ward/news4ward_archiveMenu)
+* [Newsletter] (https://github.com/psi-4ward/news4ward_newsletter)
+* [Mostread] (https://github.com/psi-4ward/news4ward_mostread)
+* [TitleSearch] (https://github.com/psi-4ward/news4ward_titleSearch)
+* and of course some more improvements compared to core-news module
 
-You can use the skeleton bundle as basis for your own Contao bundle.
+Installation
+------------
 
-## Install
+### Attention
+**DO NOT** use the Contao Repository, it holds very old versions of news4ward and its componentes!
+Use the [Contao Compoers](https://contao.org/de/extension-list/view/composer.html) to install news4ward with all dependencies.
 
-Download the skeleton bundle:
+Make a Backup of your Installation! If you use news4ward without GlobalContentelements
+contao deletes all your contentelements!
 
-```bash
-wget https://github.com/marcel-mathias-nolte/contao4-base/archive/master.zip
-unzip master.zip
-mv skeleton-bundle-master [package name]
-cd [package name]
-```
+### Required extenion
+First install these extensions:
+* [tagsWidget](https://github.com/psi-4ward/tagsWidget)
+* [MultiColumnWizard](https://contao.org/de/extension-list/view/MultiColumnWizard.de.html)
 
-## Customize
+### news4ward
+* Download or clone the news4ward to `system/modules`
+* and optionally news4ward_tags, news4ward_comments and news4ward_categories if you like
+* update the database
+* create modules, news4ward-archives and so on ... :)
 
-First adjust the following files:
 
- * `.php_cs.php`
- * `composer.json`
- * `phpunit.xml.dist`
- * `README.md`
+### Copyright
+License: http://www.gnu.org/licenses/lgpl-3.0.html LGPL <br>
+Author: [4ward.media](http://www.4wardmedia.de)
 
-Then rename the following files and/or the references to `SkeletonBundle` in
-the following files:
-
- * `src/ContaoManager/Plugin.php`
- * `src/DependencyInjection/ContaoSkeletonExtension.php`
- * `src/ContaoSkeletonBundle.php`
- * `tests/ContaoSkeletonBundleTest.php`
-
-Finally add your custom classes and resources.
-
-## Release
-
-Run the PHP-CS-Fixer and the unit test before you release your bundle:
-
-```bash
-vendor/bin/php-cs-fixer fix -v
-vendor/bin/phpunit
-```
-
-[1]: https://contao.org
+Much thanks to to Jozef Dvorsky for providing the english translation!
