@@ -118,12 +118,12 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 	'palettes' => array
 	(
 		'__selector__'				  => array('useFacebookImage', 'protected', 'showGallery'),
-		'default'                     => '{title_legend},title,alias,category,author,highlight,sticky;{layout_legend},pageTitle,description,keywords;{teaser_legend:hide},subheadline,teaser,showGallery,teaserImage,teaserImageCaption,teaserCssID;{facebook_legend},useFacebookImage;{tags_legend},tags;{expert_legend:hide},social,cssID;{protected_legend:hide},protected;{publish_legend},start,stop,status'
+		'default'                     => '{title_legend},title,alias,category,author,highlight,sticky;{layout_legend},pageTitle,description,keywords;{teaser_legend:hide},subheadline,teaser,showGallery,teaserImage,teaserImageCaption,teaserCssID;{facebook_legend},useFacebookImage;{tags_legend},tags;{expert_legend:hide},social,cssID;{protected_legend:hide},protected,guests;{publish_legend},start,stop,status'
 	),
 
 	'subpalettes' => array
 	(
-        'protected'                   => 'groups',
+        'protected'                   => 'protect,groups',
 		'useFacebookImage'			  => 'facebookImage',
 		'showGallery'			      => 'multiSRC,orderSRC,lightbox'
 	),
@@ -351,14 +351,32 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
             'eval'                    => array('submitOnChange'=>true),
             'sql'                     => "char(1) NOT NULL default ''"
         ),
+        'protect' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['protect'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'clr'),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
         'groups' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['groups'],
             'exclude'                 => true,
             'inputType'               => 'checkbox',
             'foreignKey'              => 'tl_member_group.name',
-            'eval'                    => array('mandatory'=>true, 'multiple'=>true),
+            'eval'                    => array('mandatory'=>true, 'multiple'=>true, 'tl_class'=>'clr'),
             'sql'                     => "blob NULL"
+        ),
+        'guests' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['guests'],
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "char(1) NOT NULL default ''"
         ),
         'showGallery' => array
         (

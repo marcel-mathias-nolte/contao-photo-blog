@@ -42,7 +42,15 @@ $GLOBALS['TL_LANG']['tl_news4ward_article']['category']    = array('Category', '
 $GLOBALS['TL_LANG']['tl_news4ward_article']['tags']        = array('Tags','Tag the entry with keywords.');
 
 $GLOBALS['TL_LANG']['tl_news4ward_article']['stati'] = array('published'=>'published','review'=>'review','draft'=>'draft');
-
+$GLOBALS['TL_LANG']['tl_news4ward_article']['showGallery']            = array('Show gallery', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['multiSRC']               = array('Source images', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['orderSRC']               = array('Order', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['lightbox']               = array('Show images in a lightbox', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['protected_legend']       = 'Restrict access';
+$GLOBALS['TL_LANG']['tl_news4ward_article']['protected']              = array('Show only the following groups', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['protect']              = array('Hide instead of protect', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['guests']              = array('Show only to guests', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['groups']                 = array('Member groups', '');
 /**
  * Legends
  */

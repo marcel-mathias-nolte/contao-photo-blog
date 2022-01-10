@@ -48,6 +48,8 @@ $GLOBALS['TL_LANG']['tl_news4ward_article']['orderSRC']               = array('R
 $GLOBALS['TL_LANG']['tl_news4ward_article']['lightbox']               = array('Bilder in Lightbox anzeigen', '');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['protected_legend']       = 'Zugriff beschränken';
 $GLOBALS['TL_LANG']['tl_news4ward_article']['protected']              = array('Nur für folgende Gruppen sichtbar', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['protect']              = array('Verstecken statt verschleiern', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['guests']              = array('Nur Gästen zeigen', '');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['groups']                 = array('Mitgliedergruppen', '');
 /**
  * Legends

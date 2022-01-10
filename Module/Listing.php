@@ -194,23 +194,34 @@ class Listing extends Module
 
         $this->import('\FrontendUser', 'User');
 
-        foreach ($arrArticles as $k => $article)
-        {
-            if ($article['protected'])
-            {
-                if (!FE_USER_LOGGED_IN)
-                {
+        foreach ($arrArticles as $k => $article) {
+            if ($article['protected']) {
+                if (!FE_USER_LOGGED_IN) {
                     continue;
                 }
 
                 $groups = deserialize($article['groups']);
 
-                if (!is_array($groups) || count($groups) < 1 || count(array_intersect($groups, $this->User->groups)) < 1)
-                {
+                if (!is_array($groups) || count($groups) < 1 || count(array_intersect($groups, $this->User->groups)) < 1) {
                     continue;
                 }
 
                 $arrArticles[$k]['protected'] = '';
+            }
+        }
+        $arrArticles2 = [];
+        foreach ($arrArticles as $k => $article)
+        {
+            if (!$arrArticles[$k]['protected'] || !$arrArticles[$k]['protect']) {
+                $arrArticles2[] = $arrArticles[$k];
+            }
+        }
+        $arrArticles = [];
+        foreach ($arrArticles2 as $k => $article)
+        {
+            if (!FE_USER_LOGGED_IN || !$article['guests'])
+            {
+                $arrArticles[] = $arrArticles2[$k];
             }
         }
 
