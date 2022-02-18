@@ -21,6 +21,9 @@ $GLOBALS['TL_LANG']['FMD']['news4wardList']           = array('Beitragsliste', '
 $GLOBALS['TL_LANG']['FMD']['news4wardReader']         = array('Beitragleser', 'Stellt einen einzelnen Beitrag dar.');
 $GLOBALS['TL_LANG']['FMD']['news4wardArchiveMenu']    = array('Archiv-Filter', 'Fügt einen Archiv-Filter hinzu.');
 $GLOBALS['TL_LANG']['FMD']['news4wardCategories']     = array('Kategorie-Filter', 'Fügt einen Kategorie-Filter hinzu.');
+$GLOBALS['TL_LANG']['FMD']['news4wardOrte']           = array('Orte-Filter', 'Fügt einen Orte-Filter hinzu.');
+$GLOBALS['TL_LANG']['FMD']['news4wardModels']         = array('Models-Filter', 'Fügt einen Models-Filter hinzu.');
+$GLOBALS['TL_LANG']['FMD']['news4wardFotografen']     = array('Fotografen-Filter', 'Fügt einen Fotografen-Filter hinzu.');
 $GLOBALS['TL_LANG']['FMD']['news4wardTags']           = array('Tagcloud', 'Fügt der Seite eine Tagcloud hinzu.');
 
 ?>

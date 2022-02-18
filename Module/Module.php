@@ -148,11 +148,11 @@ abstract class Module extends \Module
 
 			// Add meta information
 			$arrMeta = $this->getMetaFields($article);
-			$objTemplate->date = $arrMeta['date'];
-			$objTemplate->hasMetaFields = count($arrMeta) ? true : false;
-			$objTemplate->timestamp = $article['start'];
-			$objTemplate->author = $arrMeta['author'];
-			$objTemplate->datetime = $arrMeta['datetime'];
+			$objTemplate->date = isset($arrMeta['date']) ? $arrMeta['date'] : '';
+			$objTemplate->hasMetaFields = isset($arrMeta) && is_array($arrMeta) && count($arrMeta) ? true : false;
+			$objTemplate->timestamp = isset($article['start']) ? $article['start'] : '';
+			$objTemplate->author = isset($arrMeta['author']) ? $arrMeta['author'] : '';
+			$objTemplate->datetime = isset($arrMeta['datetime']) ? $arrMeta['datetime'] : '';
 
 			// Resolve ID from database driven filesystem
 			if ($article['teaserImage'] && ($objImage = \FilesModel::findByPk($article['teaserImage'])) !== null)
@@ -340,13 +340,58 @@ abstract class Module extends \Module
                     }
                 }
             }
+            $objTemplate->limit = $article['limit'];
 
+            $props = $this->Database->prepare('SELECT cameras, fotografen, comodels, orte FROM tl_news4ward WHERE id=?')->execute($article['pid']);
 
+            $objTemplate->category = $article['category'];
+            $objTemplate->software = $article['software'];
+            $cameras = deserialize($props->cameras,true);
+            foreach($cameras as $v)
+            {
+                if ($v['camera'] == $article['camera'])
+                {
+                    $objTemplate->camera = (object)$v;
+                }
+            }
+            $fotografen = deserialize($props->fotografen,true);
+            $fotografen2 = deserialize($article['fotografen'],true);
+            $arrFotografen = [];
+            foreach($fotografen2 as $v2)
+            {
+                foreach ($fotografen as $v)
+                {
+                    if ($v2['fotograf'] == $v['name'])
+                    {
+                        $arrFotografen[] = (object)$v;
+                    }
+                }
+            }
+            $objTemplate->fotografen = $arrFotografen;
+            $comodels = deserialize($props->comodels,true);
+            $comodels2 = deserialize($article['comodels'],true);
+            $arrModels = [];
+            foreach($comodels2 as $v2)
+            {
+                foreach ($comodels as $v)
+                {
+                    if ($v2['model'] == $v['name'])
+                    {
+                        $arrModels[] = (object)$v;
+                    }
+                }
+            }
+            $objTemplate->comodels = $arrModels;
+            $orte = deserialize($props->orte,true);
+            foreach($orte as $v)
+            {
+                if ($v['name'] . ', ' . $v['stadt'] == $article['ort'])
+                {
+                    $objTemplate->ort = (object)$v;
+                }
+            }
 
-
-
-
-			// HOOK: add custom logic
+            // HOOK: add custom logic
 			if (isset($GLOBALS['TL_HOOKS']['News4wardParseArticle']) && is_array($GLOBALS['TL_HOOKS']['News4wardParseArticle']))
 			{
 				foreach ($GLOBALS['TL_HOOKS']['News4wardParseArticle'] as $callback)

@@ -30,7 +30,10 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 			array('tl_news4ward_article', 'generateFeed'),
 			array('\News4ward\Helper', 'setFiletreePath'),
 		),
-		'onsubmit_callback' 		  => array(array('tl_news4ward_article', 'scheduleUpdate')),
+		'onsubmit_callback' 		  => array(
+		    array('tl_news4ward_article', 'scheduleUpdate'),
+            array('tl_news4ward_article', 'saveLocations')
+        ),
         'sql' => array
         (
             'keys' => array
@@ -118,14 +121,14 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 	'palettes' => array
 	(
 		'__selector__'				  => array('useFacebookImage', 'protected', 'showGallery'),
-		'default'                     => '{title_legend},title,alias,category,author,highlight,sticky;{layout_legend},pageTitle,description,keywords;{teaser_legend:hide},subheadline,teaser,showGallery,teaserImage,teaserImageCaption,teaserCssID;{facebook_legend},useFacebookImage;{tags_legend},tags;{expert_legend:hide},social,cssID;{protected_legend:hide},protected,guests;{publish_legend},start,stop,status'
+		'default'                     => '{title_legend},title,alias,category,camera,software,fotografen,comodels,ort,author,highlight,sticky;{layout_legend},pageTitle,description,keywords;{teaser_legend:hide},subheadline,teaser,showGallery,teaserImage,teaserImageCaption,teaserCssID;{facebook_legend},useFacebookImage;{tags_legend},tags;{expert_legend:hide},social,cssID;{protected_legend:hide},protected,guests;{publish_legend},start,stop,status'
 	),
 
 	'subpalettes' => array
 	(
         'protected'                   => 'protect,groups',
 		'useFacebookImage'			  => 'facebookImage',
-		'showGallery'			      => 'multiSRC,orderSRC,lightbox'
+		'showGallery'			      => 'multiSRC,orderSRC,limit,lightbox'
 	),
 
 	// Fields
@@ -400,6 +403,14 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['orderSRC'],
             'sql'                     => 'blob NULL'
         ),
+        'limit' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['limit'],
+            'exclude'                 => true,
+            'inputType'               => 'text',
+            'eval'                    => array('rgxp'=>'numeric', 'tl_class'=>'w50'),
+            'sql'                     => "int(10) NOT NULL default 0"
+        ),
         'lightbox' => array
         (
             'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['lightbox'],
@@ -416,6 +427,76 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
             'options_callback'        => array('tl_news4ward_article','getCategories'),
             'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'camera' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['camera'],
+            'inputType'               => 'select',
+            'exclude'                 => true,
+            'options_callback'        => array('tl_news4ward_article','getCameras'),
+            'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50 clr'),
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'software' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['software'],
+            'inputType'               => 'select',
+            'exclude'                 => true,
+            'options_callback'        => array('tl_news4ward_article','getSoftwares'),
+            'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'fotografen' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward']['fotografen'],
+            'exclude'                 => true,
+            'inputType'               => 'multiColumnWizard',
+            'eval'                    => array
+            (
+                'columnFields' => array
+                (
+                    'fotograf' => array
+                    (
+                        'label'     => array('Fotograf'),
+                        'inputType'               => 'select',
+                        'exclude'                 => true,
+                        'options_callback'        => array('tl_news4ward_article','getFotografen'),
+                        'eval'                    => array('includeBlankOption'=>true)
+                    )
+                ),
+                'tl_class' => 'clr'
+            ),
+            'sql'                     => "blob NULL"
+        ),
+        'comodels' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward']['comodels'],
+            'exclude'                 => true,
+            'inputType'               => 'multiColumnWizard',
+            'eval'                    => array
+            (
+                'columnFields' => array
+                (
+                    'model' => array
+                    (
+                        'label'     => array('Model'),
+                        'inputType'               => 'select',
+                        'exclude'                 => true,
+                        'options_callback'        => array('tl_news4ward_article','getCoModels'),
+                        'eval'                    => array('includeBlankOption'=>true)
+                    )
+                )
+            ),
+            'sql'                     => "blob NULL"
+        ),
+        'ort' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['ort'],
+            'inputType'               => 'select',
+            'exclude'                 => true,
+            'options_callback'        => array('tl_news4ward_article','getOrte'),
+            'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(255) NOT NULL default ''",
         ),
         'tags' => array
         (
@@ -501,6 +582,49 @@ class tl_news4ward_article extends Backend
         return '';
     }
 
+
+    /**
+     * Save Tags in the tags-table
+     * @param string $varValue
+     * @param DataContainer $dc
+     * @return string empty
+     */
+    public function saveLocations($dc)
+    {
+        $objLister = $this->Database->execute("SELECT id, orte, jumpToList FROM tl_news4ward");
+        $arrOrte = [];
+        $arrJumpTo = [];
+        while ($objLister->next()) {
+            $arrJumpTo[$objLister->id] = PageModel::findByPk($objLister->jumpToList);
+            $orte = deserialize($objLister->orte, true);
+            if (count($orte) > 0) foreach ($orte as $ort) {
+                if ($ort['lat'] && $ort['lon']) {
+                    $arrOrte[$objLister->id . ', ' . $ort['name'] . ', ' . $ort['stadt']]  = [
+                        'pid' => $objLister->id,
+                        'lat' => $ort['lat'],
+                        'lon' => $ort['lon'],
+                        'name' => $ort['name'] . ', ' . $ort['stadt'],
+                        'label' => $ort['name'] . ', ' . $ort['stadt'],
+                        'quantity' => 0,
+                        'tstamp' => time()
+                    ];
+                }
+            }
+        }
+        $objLister = $this->Database->execute("SELECT pid, ort, COUNT(id) AS quantity FROM tl_news4ward_article WHERE ort <> '' GROUP BY pid, ort");
+        while ($objLister->next()) {
+            if (isset($arrOrte[$objLister->pid . ', ' . $objLister->ort]))
+                $arrOrte[$objLister->pid . ', ' . $objLister->ort]['quantity'] = $objLister->quantity;
+        }
+        $this->Database->execute("TRUNCATE tl_news4ward_location_cache");
+        foreach ($arrOrte as $k => $ort) {
+            if ($ort['quantity'] > 0) {
+                $ort['href'] = $this->generateFrontendUrl($arrJumpTo[$ort['pid']]->row(),'/ort/'.urlencode($ort['name']));
+                $this->Database->prepare("INSERT INTO tl_news4ward_location_cache SET tstamp = ?, pid = ?, name = ?, lat = ?, lon = ?, quantity = ?, label = ?")->execute($ort['tstamp'], $ort['pid'], '<a href="' . $ort['href'] . '">' . $ort['name'] . '</a>', $ort['lat'], $ort['lon'], $ort['quantity'], $ort['label']);
+            }
+        }
+    }
+
     public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
     {
         if (\Contao\Input::get('cid'))
@@ -533,6 +657,96 @@ class tl_news4ward_article extends Backend
             $arrCategories[] = $v['category'];
         }
         return $arrCategories;
+    }
+
+    /**
+     * Fetch all cameras for the current archive
+     * @param Data_Container $dc
+     * @return array
+     */
+    public function getCameras($dc)
+    {
+        $this->import('Database');
+        $arrCameras = array();
+        $cameras = $this->Database->prepare('SELECT cameras FROM tl_news4ward WHERE id=?')->execute($dc->activeRecord->pid);
+        $cameras = deserialize($cameras->cameras,true);
+        foreach($cameras as $v)
+        {
+            $arrCameras[] = $v['camera'];
+        }
+        return $arrCameras;
+    }
+
+    /**
+     * Fetch all softwares for the current archive
+     * @param Data_Container $dc
+     * @return array
+     */
+    public function getSoftwares($dc)
+    {
+        $this->import('Database');
+        $arrSoftwares = array();
+        $softwares = $this->Database->prepare('SELECT software FROM tl_news4ward WHERE id=?')->execute($dc->activeRecord->pid);
+        $softwares = deserialize($softwares->software,true);
+        foreach($softwares as $v)
+        {
+            $arrSoftwares[] = $v['software'];
+        }
+        return $arrSoftwares;
+    }
+
+    /**
+     * Fetch all fotografen for the current archive
+     * @param Data_Container $dc
+     * @return array
+     */
+    public function getFotografen($dc)
+    {
+        $this->import('Database');
+        $arrFotografen = array();
+        $fotografen = $this->Database->prepare('SELECT fotografen FROM tl_news4ward WHERE id=?')->execute($dc->activeRecord->pid);
+        $fotografen = deserialize($fotografen->fotografen,true);
+        foreach($fotografen as $v)
+        {
+            $arrFotografen[] = $v['name'];
+        }
+        return $arrFotografen;
+    }
+
+    /**
+     * Fetch all comodels for the current archive
+     * @param Data_Container $dc
+     * @return array
+     */
+    public function getCoModels($dc)
+    {
+        $this->import('Database');
+        $arrComodels = array();
+        $comodels = $this->Database->prepare('SELECT comodels FROM tl_news4ward WHERE id=?')->execute($dc->activeRecord->pid);
+        $comodels = deserialize($comodels->comodels,true);
+        foreach($comodels as $v)
+        {
+            $arrComodels[] = $v['name'];
+        }
+        return $arrComodels;
+    }
+
+    /**
+     * Fetch all orte for the current archive
+     * @param Data_Container $dc
+     * @return array
+     */
+    public function getOrte($dc)
+    {
+        $this->import('Database');
+        $arrOrte = array();
+        $orte = $this->Database->prepare('SELECT orte FROM tl_news4ward WHERE id=?')->execute($dc->activeRecord->pid);
+        $orte = deserialize($orte->orte,true);
+        foreach($orte as $v)
+        {
+            $arrOrte[] = $v['name'] . ', ' . $v['stadt'];
+        }
+        return $arrOrte;
     }
 
     public function toggleVisibility($intId, $blnVisible, \Contao\DataContainer $dc=null)
@@ -729,7 +943,6 @@ class tl_news4ward_article extends Backend
 		return $strReturn;
 	}
 
-
 	/**
 	 * Auto-generate an article alias if it has not been set yet
 	 *
@@ -785,7 +998,6 @@ class tl_news4ward_article extends Backend
 
 		return '<a href="'.$this->addToUrl($href.'&amp;id='.$row['id']).'" title="'.specialchars($title).'"'.$attributes.'>'.$this->generateImage($icon, $label).'</a> ';
 	}
-
 
 	/**
 	 * Check permissions to edit table tl_news4ward_article
@@ -847,7 +1059,6 @@ class tl_news4ward_article extends Backend
 		$this->redirect('contao/main.php?act=error');
 	}
 
-
     /**
 	 * Check for modified news feeds and update the XML files if necessary
 	 */
@@ -869,7 +1080,6 @@ class tl_news4ward_article extends Backend
 
 		$this->Session->set('news4ward_feed_updater', NULL);
 	}
-
 
 	/**
 	 * Schedule a news feed update

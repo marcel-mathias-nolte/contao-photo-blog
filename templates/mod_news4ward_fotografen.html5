@@ -1,0 +1,16 @@
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<ul>
+    <?php foreach($this->fotografen as $name => $fotograf): if ($name): ?>
+        <li>
+            <a href="<?php echo $fotograf['href'];?>"<?php if($fotograf['active']) echo ' class="active"';?>><?php echo $name;?></a> (<?php echo $fotograf['count'];?>)
+        </li>
+    <?php endif; endforeach; ?>
+</ul>
+
+</div>
+<!-- indexer::continue -->

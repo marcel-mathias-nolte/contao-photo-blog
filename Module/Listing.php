@@ -196,7 +196,7 @@ class Listing extends Module
 
         foreach ($arrArticles as $k => $article) {
             if ($article['protected']) {
-                if (!$this->User) {
+                if (!FE_USER_LOGGED_IN) {
                     continue;
                 }
 
@@ -219,7 +219,7 @@ class Listing extends Module
         $arrArticles = [];
         foreach ($arrArticles2 as $k => $article)
         {
-            if (!$this->User || !$article['guests'])
+            if (!FE_USER_LOGGED_IN || !$article['guests'])
             {
                 $arrArticles[] = $arrArticles2[$k];
             }

@@ -108,7 +108,7 @@ $GLOBALS['TL_DCA']['tl_news4ward'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('allowComments', 'protected', 'makeFeed','useFilePath'),
-		'default'                     => '{title_legend},title,jumpTo,jumpToList;{filePath_legend},useFilePath;{categories_legend},categories;{protected_legend:hide},protected;{feed_legend:hide},makeFeed'
+		'default'                     => '{title_legend},title,jumpTo,jumpToList;{filePath_legend},useFilePath;{categories_legend},categories,cameras,software,fotografen,comodels,orte;{protected_legend:hide},protected;{feed_legend:hide},makeFeed'
 	),
 
 	// Subpalettes
@@ -284,6 +284,130 @@ $GLOBALS['TL_DCA']['tl_news4ward'] = array
                     'category' => array
                     (
                         'label'     => array('&nbsp;'),
+                        'inputType' => 'text'
+                    )
+                )
+            ),
+            'sql'                     => "blob NULL"
+        ),
+        'cameras' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward']['cameras'],
+            'exclude'                 => true,
+            'inputType'               => 'multiColumnWizard',
+            'eval'                    => array
+            (
+                'columnFields' => array
+                (
+                    'camera' => array
+                    (
+                        'label'     => array('Kamera'),
+                        'inputType' => 'text'
+                    ),
+                    'type' => array
+                    (
+                        'label'     => array('Art'),
+                        'inputType' => 'select',
+                        'options' => [
+                            'dslr' => 'DSLR',
+                            'phone' => 'Telefon',
+                        ]
+                    )
+                )
+            ),
+            'sql'                     => "blob NULL"
+        ),
+        'software' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward']['software'],
+            'exclude'                 => true,
+            'inputType'               => 'multiColumnWizard',
+            'eval'                    => array
+            (
+                'columnFields' => array
+                (
+                    'software' => array
+                    (
+                        'label'     => array('&nbsp;'),
+                        'inputType' => 'text'
+                    )
+                )
+            ),
+            'sql'                     => "blob NULL"
+        ),
+        'fotografen' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward']['fotografen'],
+            'exclude'                 => true,
+            'inputType'               => 'multiColumnWizard',
+            'eval'                    => array
+            (
+                'columnFields' => array
+                (
+                    'name' => array
+                    (
+                        'label'     => array('Name'),
+                        'inputType' => 'text'
+                    ),
+                    'link' => array
+                    (
+                        'label'     => array('Link'),
+                        'inputType' => 'text'
+                    )
+                )
+            ),
+            'sql'                     => "blob NULL"
+        ),
+        'comodels' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward']['comodels'],
+            'exclude'                 => true,
+            'inputType'               => 'multiColumnWizard',
+            'eval'                    => array
+            (
+                'columnFields' => array
+                (
+                    'name' => array
+                    (
+                        'label'     => array('Name'),
+                        'inputType' => 'text'
+                    ),
+                    'link' => array
+                    (
+                        'label'     => array('Link'),
+                        'inputType' => 'text'
+                    )
+                )
+            ),
+            'sql'                     => "blob NULL"
+        ),
+        'orte' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward']['orte'],
+            'exclude'                 => true,
+            'inputType'               => 'multiColumnWizard',
+            'eval'                    => array
+            (
+                'columnFields' => array
+                (
+                    'name' => array
+                    (
+                        'label'     => array('Name'),
+                        'inputType' => 'text'
+                    ),
+                    'stadt' => array
+                    (
+                        'label'     => array('Stadt'),
+                        'inputType' => 'text'
+                    ),
+                    'lat' => array
+                    (
+                        'label'     => array('Breite'),
+                        'inputType' => 'text'
+                    ),
+                    'lon' => array
+                    (
+                        'label'     => array('Länge'),
                         'inputType' => 'text'
                     )
                 )

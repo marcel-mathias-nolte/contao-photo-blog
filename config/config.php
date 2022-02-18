@@ -28,6 +28,9 @@ array_insert($GLOBALS['FE_MOD'], 2, array
 		'news4wardReader'                       => '\News4ward\Module\Reader',
         'news4wardArchiveMenu'                  => '\News4ward\Module\ArchiveMenu',
         'news4wardCategories'                   => '\News4ward\Module\Categories',
+        'news4wardOrte'                         => '\News4ward\Module\Orte',
+        'news4wardModels'                       => '\News4ward\Module\Models',
+        'news4wardFotografen'                   => '\News4ward\Module\Fotografen',
         'news4wardTags'                         => '\News4ward\Module\Tags'
 	)
 ));
@@ -51,7 +54,12 @@ $GLOBALS['TL_CRON']['daily'][]                  = array('\News4ward\Helper', 'ge
 $GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('\News4ward\Helper', 'inserttagReplacer');
 $GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\News4ward\ArchiveMenuHelper','archiveFilter');
 $GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\News4ward\CategoriesHelper','categoryFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\News4ward\OrtHelper','ortFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\News4ward\OrtHelper','stadtFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\News4ward\OrtHelper','fotografFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\News4ward\OrtHelper','modelFilter');
 $GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('\News4ward\CategoriesHelper','categoryParseArticle');
+$GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('\News4ward\OrtHelper','ortParseArticle');
 $GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\News4ward\TagsHelper','listFilter');
 $GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('\News4ward\TagsHelper','tagsParseArticle');
 
