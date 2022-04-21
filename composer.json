@@ -28,6 +28,11 @@
     "issues": "https://github.com/marcel-mathias-nolte/contao-photoblog/issues",
     "source": "https://github.com/marcel-mathias-nolte/contao-photoblog"
   },
+  "autoload": {
+    "psr-4": {
+      "MarcelMathiasNolte\\ContaoPhotoBlogBundle\\": "src/"
+    }
+  },
   "require": {
     "php": ">=7.2",
     "contao/core-bundle": "4.*",
