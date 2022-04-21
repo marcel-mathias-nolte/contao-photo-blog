@@ -52,6 +52,7 @@ $GLOBALS['TL_LANG']['tl_news4ward_article']['protected']              = array('S
 $GLOBALS['TL_LANG']['tl_news4ward_article']['protect']                = array('Hide instead of protect', '');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['guests']                 = array('Show only to guests', '');
 $GLOBALS['TL_LANG']['tl_news4ward_article']['groups']                 = array('Member groups', '');
+$GLOBALS['TL_LANG']['tl_news4ward_article']['placeholder']            = array('Placeholder image', '');
 /**
  * Legends
  */

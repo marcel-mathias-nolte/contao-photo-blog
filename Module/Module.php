@@ -182,6 +182,28 @@ abstract class Module extends \Module
                 $objTemplate->teaserImage = '';
             }
 
+			// Resolve ID from database driven filesystem
+			if ($article['placeholder'] && ($objFile = \FilesModel::findByPk($article['placeholder'])) !== null)
+			{
+				$article['placeholder'] = '';
+				$objFile = new \Contao\File($objFile->path);
+				if ($objFile->isImage) {
+					$article['placeholder'] = array
+					(
+						'id' => $objFile->id,
+						'uuid' => $objFile->uuid,
+						'name' => $objFile->basename,
+						'singleSRC' => $objFile->path,
+						'filesModel' => $objFile->current()
+					);
+					var_dump($article['placeholder']); die();
+				}
+			}
+			else
+			{
+                $article['placeholder'] = '';
+			}		
+
             // Resolve ID from database driven filesystem
             if ($article['showGallery'])
             {

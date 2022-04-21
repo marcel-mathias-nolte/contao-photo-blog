@@ -126,7 +126,7 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 
 	'subpalettes' => array
 	(
-        'protected'                   => 'protect,groups',
+        'protected'                   => 'protect,groups,placeholder',
 		'useFacebookImage'			  => 'facebookImage',
 		'showGallery'			      => 'multiSRC,orderSRC,limit,lightbox'
 	),
@@ -261,7 +261,15 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 			'inputType'               => 'fileTree',
 			'exclude'                 => true,
 			'eval'                    => array('fieldType'=>'radio', 'files'=>'true', 'filesOnly'=>true, 'extensions'=>'jpg,gif,png,jpeg'),
-            'sql'                     => "binary(16) NULL"
+			'sql'                     => "binary(16) NULL"
+		),
+		'placeholder' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_news4ward_article']['placeholder'],
+			'inputType'               => 'fileTree',
+			'exclude'                 => true,
+			'eval'                    => array('fieldType'=>'radio', 'files'=>'true', 'filesOnly'=>true, 'extensions'=>'jpg,gif,png,jpeg'),
+			'sql'                     => "binary(16) NULL"
 		),
 		'teaserImageCaption' => array
 		(
