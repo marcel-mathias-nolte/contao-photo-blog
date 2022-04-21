@@ -202,7 +202,7 @@ abstract class Module extends \Module
 			else
 			{
                 $article['placeholder'] = '';
-			}		
+			}
 
             // Resolve ID from database driven filesystem
             if ($article['showGallery'])
