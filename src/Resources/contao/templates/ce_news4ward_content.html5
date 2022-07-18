@@ -1,0 +1,125 @@
+<?php
+
+$video_containers = [];
+
+$member = FE_USER_LOGGED_IN ? \FrontendUser::getInstance() : false;
+$showFsk18 = $member && $member->isMemberOf(6);
+$showSexual = $member && $member->isMemberOf(7);
+$sexualHidden = $fsk18Hidden = 0;
+$loggedIn = FE_USER_LOGGED_IN ? true : false;
+
+$images = $this->images ? $this->images : [];
+$videos = $this->videos ? $this->videos : [];
+
+if (is_array($videos) && count($videos) > 0)
+{
+    foreach ($videos as $key => $video)
+    {
+        if (!$showSexual && $video['filesModel']->fsk == 'erotic')
+        {
+            $sexualHidden++;
+            unset($videos[$key]);
+        }
+        if (!$showFsk18 && $video['filesModel']->fsk == 'porn')
+        {
+            $fsk18Hidden++;
+            unset($videos[$key]);
+        }
+    }
+}
+
+if (is_array($images) && count($images) > 0)
+{
+    foreach ($images as $key => $image)
+    {
+        if (!$showSexual && $image['filesModel']->fsk == 'erotic')
+        {
+            $sexualHidden++;
+            unset($images[$key]);
+        }
+        if (!$showFsk18 && $image['filesModel']->fsk == 'porn')
+        {
+            $fsk18Hidden++;
+            unset($images[$key]);
+        }
+    }
+}
+
+?>
+
+<?php if (isset($this->fields) && is_array($this->fields) && in_array('text', $this->fields) && $this->post->teaser): ?>
+	<div class="ce_text block">
+		<?=$this->post->teaser?>
+	</div>
+<?php endif;  ?>
+<?php if ($fsk18Hidden > 0 || $sexualHidden > 0): ?>
+	<div class="ce_text block">
+        <p class="hidden"><strong><i><?php if ($fsk18Hidden > 0): ?><?=$fsk18Hidden; ?> pornografische<?php if ($fsk18Hidden == 1): ?>r<?php endif; ?><?php endif; ?> <?php if ($fsk18Hidden > 0 && $sexualHidden > 0): ?>und<?php endif; ?> <?php if ($sexualHidden > 0): ?><?=$sexualHidden; ?> sexualisierende<?php if ($sexualHidden == 1): ?>r<?php endif; ?><?php endif; ?> Inhalt<?php if ($sexualHidden + $fsk18Hidden > 1): ?>e<?php endif; ?> wurde<?php if ($sexualHidden + $fsk18Hidden > 1): ?>n<?php endif; ?> ausgeblendet.</i></strong></p>
+	</div>
+<?php endif;  ?>
+
+<?php
+    if ((is_array($images) && count($images) > 0) || (is_array($videos) && count($videos) > 0))
+    {
+
+        foreach ($images as $key => $image)
+        {
+            $images[$key]['href'] = $this->getImage($image['singleSRC'], 1920, 1080, 'proportional');
+            $images[$key]['classes'] = '';
+        }
+
+        $vpos = 1;
+        foreach ($videos as $key => $video)
+        {
+            if ($video['poster'])
+            {
+                ob_start();
+                ?>
+                <div style="display: none;">
+                    <div id="video_container_<?=md5($video['singleSRC']) ?>">
+                        <video loop="" controls>
+                            <source type="video/mp4" src="<?= $video['singleSRC']; ?>">
+                        </video>
+                    </div>
+                </div>
+                <?php
+                $video_containers[] = ob_get_clean();
+                $video['href'] = '#video_container_' . md5($video['singleSRC']);
+                $video['classes'] = 'inline-colorbox';
+                $video['singleSRC'] = $video['poster'];
+                array_splice( $images, $vpos, 0, [$video] );
+                $vpos++;
+                unset($videos[$key]);
+            }
+        }
+    }
+
+?>
+<?php if (isset($this->fields) && is_array($this->fields) && in_array('videos', $this->fields) && count($videos) > 0): ?>
+	<?php foreach ($videos as $pos => $video): ?>
+		<div class="ce_player block">
+			<figure class="video_container">
+				<a href="<?php echo $video['singleSRC']; ?>" data-lightbox="lightbox[lb<?=$this->id ?>]">
+					<video <?php if ($video['poster']): ?>poster="<?= $video['poster']; ?>" <?php endif; ?>autoplay="" loop="" muted="" preload="auto" >
+						<source type="video/mp4" src="<?= $video['singleSRC']; ?>">
+					</video>
+				</a>
+			</figure>
+		</div>
+	<?php endforeach; ?>
+<?php endif; ?>
+<?php if (isset($this->fields) && is_array($this->fields) && in_array('images', $this->fields) && $images): ?>
+	<div class="ce_masonry_gallery msry_theme_standard block">
+		<div class="masonry" id="masonry_<?=$this->id; ?>">
+			<?php foreach ($images as $pos => $image): ?>
+				<div class="masonry_gallery" id="masonry_gallery_<?=$this->id?>_<?=$pos?>">
+					<a href="<?=$image['href']; ?>" data-lightbox="lightbox[lb<?=$this->id?>]" class="<?=$image['classes']; ?>">
+                        {{picture::<?=$image['singleSRC'] ?>?size=4&mode=proportional}}
+					</a>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</div>
+
+	<?=implode($video_containers); ?>
+<?php endif; ?>

@@ -63,3 +63,10 @@ $GLOBALS['TL_MODELS']['tl_news4ward_article']   = 'MarcelMathiasNolte\ContaoPhot
 $GLOBALS['TL_MODELS']['tl_news4ward']           = 'MarcelMathiasNolte\ContaoPhotoBlogBundle\Model\ArchiveModel';
 
 $GLOBALS['BE_FFL']['tags'] = 'MarcelMathiasNolte\ContaoPhotoBlogBundle\Widgets\TagsWidget';
+
+
+array_insert($GLOBALS['TL_CTE'], 2, array(
+    'text' => array(
+        'news4ward_content' => 'MarcelMathiasNolte\ContaoPhotoBlogBundle\Elements\ContentNews4WardContent'
+    )
+));

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace MarcelMathiasNolte\ContaoPhotoBlogBundled;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle;
 
 class OrtHelper extends \Controller
 {

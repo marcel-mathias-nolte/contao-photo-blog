@@ -11,6 +11,18 @@ if($this->Input->get('do') == 'news4ward')
 	$GLOBALS['TL_DCA']['tl_content']['list']['operations']['toggle']['button_callback'] = array('tl_content_news4ward', 'toggleIcon');
 }
 
+$GLOBALS['TL_DCA']['tl_content']['palettes']['news4ward_content'] = '{type_legend},type;{news4ward_legend},news4ward_fields';
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['news4ward_fields'] = [
+    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['news4ward_fields'],
+    'reference'               => &$GLOBALS['TL_LANG']['tl_content']['news4ward_fields'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'options'                 => ['credits', 'text', 'videos', 'images', 'tags'],
+    'eval' 			          => array('multiple' => true, 'tl_class' => 'w50'),
+    'sql'                     => "text NULL"
+];
+
 class tl_content_news4ward extends tl_content
 {
 
