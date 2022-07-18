@@ -1,16 +1,5 @@
 <?php
 
-/**
- * News4ward
- * a contentelement driven news/blog-system
- *
- * @author Christoph Wiechert <wio@psitrax.de>
- * @copyright 4ward.media GbR <http://www.4wardmedia.de>
- * @package news4ward
- * @filesource
- * @licence LGPL
- */
-
 namespace MarcelMathiasNolte\ContaoPhotoBlogBundle\Module;
 
 class Reader extends Module
@@ -32,7 +21,7 @@ class Reader extends Module
 		{
 			$objTemplate = new \BackendTemplate('be_wildcard');
 
-			$objTemplate->wildcard = '### News4ward READER ###';
+			$objTemplate->wildcard = '### PhotoBlog READER ###';
 			$objTemplate->title = $this->headline;
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
@@ -65,7 +54,7 @@ class Reader extends Module
 	 */
 	protected function compile()
     {
-		$this->import('\News4ward\Helper', 'Helper');
+		$this->import('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'Helper');
 
 		/* build where */
 		$where = array();

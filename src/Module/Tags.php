@@ -1,15 +1,5 @@
 <?php
 
-/**
- * News4ward
- * a contentelement driven news/blog-system
- *
- * @author Christoph Wiechert <wio@psitrax.de>
- * @copyright 4ward.media GbR <http://www.4wardmedia.de>
- * @package news4ward_tags
- * @filesource
- * @licence LGPL
- */
 namespace MarcelMathiasNolte\ContaoPhotoBlogBundle\Module;
 
 class Tags extends Module
@@ -31,7 +21,7 @@ class Tags extends Module
 		{
 			$objTemplate = new \BackendTemplate('be_wildcard');
 
-			$objTemplate->wildcard = '### News4ward Tagcloud ###';
+			$objTemplate->wildcard = '### PhotoBlog Tagcloud ###';
 			$objTemplate->title = $this->headline;
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
@@ -120,7 +110,7 @@ class Tags extends Module
 			if(!strlen(trim($v['tag']))) continue;
 
 			$arrTags[$k]['size'] = $this->GetTagSizeLogarithmic($v['cnt'],$minCount,$maxCount);
-			$arrTags[$k]['href'] = $this->generateFrontendUrl($objJumpTo->row(),'/tag/'.\News4ward\TagsHelper::encodeTag($v['tag']));
+			$arrTags[$k]['href'] = $this->generateFrontendUrl($objJumpTo->row(),'/tag/'.MarcelMathiasNolte\ContaoPhotoBlogBundle\TagsHelper::encodeTag($v['tag']));
 			$arrTags[$k]['active'] = ($this->Input->get('tag') == $v['tag']);
 
 			// set active item for the active filter hinting

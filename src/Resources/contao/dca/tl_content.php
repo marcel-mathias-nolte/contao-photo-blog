@@ -1,18 +1,5 @@
 <?php
 
-/**
- * News4ward
- * a contentelement driven news/blog-system
- *
- * @author Christoph Wiechert <wio@psitrax.de>
- * @copyright 4ward.media GbR <http://www.4wardmedia.de>
- * @package news4ward
- * @filesource
- * @licence LGPL
- */
-
-
-
 // GlobalContentelements switch
 if($this->Input->get('do') == 'news4ward')
 {
@@ -20,7 +7,7 @@ if($this->Input->get('do') == 'news4ward')
 	
 	// set news4wards checkPermissions function
 	$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = array('tl_content_news4ward', 'checkPermission');
-	$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = array('\News4ward\Helper', 'setFiletreePath');
+	$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'setFiletreePath');
 	$GLOBALS['TL_DCA']['tl_content']['list']['operations']['toggle']['button_callback'] = array('tl_content_news4ward', 'toggleIcon');
 }
 

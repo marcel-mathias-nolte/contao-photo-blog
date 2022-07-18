@@ -1,17 +1,5 @@
 <?php
 
-/**
- * News4ward
- * a contentelement driven news/blog-system
- *
- * @author Christoph Wiechert <wio@psitrax.de>
- * @copyright 4ward.media GbR <http://www.4wardmedia.de>
- * @package news4ward
- * @filesource
- * @licence LGPL
- */
-
-
 $GLOBALS['TL_DCA']['tl_news4ward'] = array
 (
 
@@ -592,7 +580,7 @@ class tl_news4ward extends Backend
 			return;
 		}
 
-		$this->import('\News4ward\Helper','Helper');
+		$this->import('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper','Helper');
 
 		foreach ($session as $id)
 		{

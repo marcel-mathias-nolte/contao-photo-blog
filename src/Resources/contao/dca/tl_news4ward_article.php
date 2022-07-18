@@ -1,18 +1,5 @@
 <?php
 
-/**
- * News4ward
- * a contentelement driven news/blog-system
- *
- * @author Christoph Wiechert <wio@psitrax.de>
- * @copyright 4ward.media GbR <http://www.4wardmedia.de>
- * @package news4ward
- * @filesource
- * @licence LGPL
- */
-
-
-
 $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 (
 
@@ -28,7 +15,7 @@ $GLOBALS['TL_DCA']['tl_news4ward_article'] = array
 		(
 			array('tl_news4ward_article', 'checkPermission'),
 			array('tl_news4ward_article', 'generateFeed'),
-			array('\News4ward\Helper', 'setFiletreePath'),
+			array('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'setFiletreePath'),
 		),
 		'onsubmit_callback' 		  => array(
 		    array('tl_news4ward_article', 'scheduleUpdate'),
@@ -1079,7 +1066,7 @@ class tl_news4ward_article extends Backend
 			return;
 		}
 
-		$this->import('\News4ward\Helper','Helper');
+		$this->import('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper','Helper');
 
 		foreach ($session as $id)
 		{

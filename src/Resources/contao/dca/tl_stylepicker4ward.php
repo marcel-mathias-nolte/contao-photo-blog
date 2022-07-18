@@ -7,9 +7,7 @@
 
 if(!in_array('_stylepicker4ward', \ModuleLoader::getActive())) return;
 
- 
-// News4ward Articles
-$GLOBALS['TL_DCA']['tl_stylepicker4ward']['fields']['_news4ward_Article'] = array
+ $GLOBALS['TL_DCA']['tl_stylepicker4ward']['fields']['_news4ward_Article'] = array
 (
 	'label'				      => &$GLOBALS['TL_LANG']['tl_stylepicker4ward']['_Article'],
 	'inputType'               => 'checkbox',

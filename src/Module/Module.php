@@ -1,17 +1,5 @@
 <?php
 
-/**
- * News4ward
- * a contentelement driven news/blog-system
- *
- * @author Christoph Wiechert <wio@psitrax.de>
- * @copyright 4ward.media GbR <http://www.4wardmedia.de>
- * @package news4ward
- * @filesource
- * @licence LGPL
- */
-
-
 namespace MarcelMathiasNolte\ContaoPhotoBlogBundle\Module;
 
 abstract class Module extends \Module
@@ -73,7 +61,7 @@ abstract class Module extends \Module
 		}
 
 		global $objPage;
-		$this->import('\News4ward\Helper','Helper');
+		$this->import('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper','Helper');
 
 		$limit = count($arrArticles);
 		$count = 0;
