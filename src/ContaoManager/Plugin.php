@@ -15,7 +15,7 @@ use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
-use MarcelMathiasNolte\ContaoClothingCatalogBundle\ContaoClothingCatalogBundle;
+use MarcelMathiasNolte\ContaoPhotoBlogBundle\ContaoPhotoBlogBundle;
 
 class Plugin implements BundlePluginInterface
 {
@@ -25,7 +25,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(MarcelMathiasNolte\ContaoPhotoBlogBundle\ContaoPhotoBlogBundle::class)
+            BundleConfig::create(ContaoPhotoBlogBundle::class)
                 ->setLoadAfter([
                     ContaoCoreBundle::class
                 ]),
