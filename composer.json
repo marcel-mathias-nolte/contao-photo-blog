@@ -24,6 +24,13 @@
       "role": "Developer"
     }
   ],
+  "require": {
+    "php": ">=7.2",
+    "contao/core-bundle": "4.*",
+    "contao-community-alliance/composer-plugin": "^2.4 || ^3.0",
+    "menatwork/contao-multicolumnwizard-bundle": "~3",
+    "psi/tags-widget": "~2"
+  },
   "support": {
     "issues": "https://github.com/marcel-mathias-nolte/contao-photoblog/issues",
     "source": "https://github.com/marcel-mathias-nolte/contao-photoblog"
@@ -33,23 +40,8 @@
       "MarcelMathiasNolte\\ContaoPhotoBlogBundle\\": "src/"
     }
   },
-  "require": {
-    "php": ">=7.2",
-    "contao/core-bundle": "4.*",
-    "contao-community-alliance/composer-plugin": "^2.4 || ^3.0",
-    "menatwork/contao-multicolumnwizard-bundle": "~3",
-    "psi/tags-widget": "~2"
-  },
-  "suggest": {
-    "psi/news4ward_comments": "Let visitors comment articles",
-    "psi/news4ward_multicategories": "Organize articles in multiple categories and provide a frontend filter module.",
-    "psi/news4ward_author-menu": "Frontend filter module for authors.",
-    "psi/news4ward_related": "Find similar articles to the displayed one.",
-    "psi/news4ward_mostread": "Count article read hits and display most visited articles.",
-    "psi/news4ward_newsletter": "Prepare newsltters from articles",
-    "psi/news4ward_titleSearch": "Filter listing within title searchbox",
-    "psi/news4ward_metaTitle": "Extra field for page title",
-    "christianbarkowsky/news4ward_robots": "Extra robots-tag field for SEO optimisation"
+  "extra": {
+    "contao-manager-plugin": "MarcelMathiasNolte\\ContaoPhotoBlogBundle\\ContaoManager\\Plugin"
   },
   "config": {
     "allow-plugins": {
