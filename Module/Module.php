@@ -182,28 +182,6 @@ abstract class Module extends \Module
                 $objTemplate->teaserImage = '';
             }
 
-			// Resolve ID from database driven filesystem
-			if ($article['placeholder'] && ($objFile = \FilesModel::findByPk($article['placeholder'])) !== null)
-			{
-				$article['placeholder'] = '';
-				$objFile = new \Contao\File($objFile->path);
-				if ($objFile->isImage) {
-					$article['placeholder'] = array
-					(
-						'id' => $objFile->id,
-						'uuid' => $objFile->uuid,
-						'name' => $objFile->basename,
-						'singleSRC' => $objFile->path,
-						'filesModel' => $objFile->current()
-					);
-					var_dump($article['placeholder']); die();
-				}
-			}
-			else
-			{
-                $article['placeholder'] = '';
-			}
-
             // Resolve ID from database driven filesystem
             if ($article['showGallery'])
             {
@@ -214,6 +192,7 @@ abstract class Module extends \Module
                     if ($objFiles !== null) {
                         $images = array();
                         $videos = array();
+                        $video_posters = array();
                         $auxDate = array();
                         if (!$article['protected']) {
                             while ($objFiles->next()) {
@@ -229,6 +208,8 @@ abstract class Module extends \Module
                                         $poster = substr($objFile->path, 0, strlen($objFile->path) - strlen($objFile->extension)) . 'png';
                                         if (!file_exists(TL_ROOT . '/' . $poster))
                                             $poster = null;
+                                        else
+                                        	$video_posters[] = $poster;
                                         $videos[$objFiles->path] = array
                                         (
                                             'id' => $objFiles->id,
@@ -236,8 +217,7 @@ abstract class Module extends \Module
                                             'name' => $objFile->basename,
                                             'singleSRC' => $objFiles->path,
                                             'filesModel' => $objFiles->current(),
-                                            'poster' => $poster,
-                                            'isHidden' => !FE_USER_LOGGED_IN && $objFiles->hidden
+                                            'poster' => $poster
                                         );
                                         continue;
                                     }
@@ -261,8 +241,7 @@ abstract class Module extends \Module
                                         'uuid' => $objFiles->uuid,
                                         'name' => $objFile->basename,
                                         'singleSRC' => $objFiles->path,
-                                        'filesModel' => $objFiles->current(),
-                                        'isHidden' => !FE_USER_LOGGED_IN && $objFiles->hidden
+                                        'filesModel' => $objFiles->current()
                                     );
 
                                     $auxDate[] = $objFile->mtime;
@@ -285,6 +264,8 @@ abstract class Module extends \Module
                                             $poster = substr($objFile->path, 0, strlen($objFile->path) - strlen($objFile->extension)) . 'png';
                                             if (!file_exists(TL_ROOT . '/' . $poster))
                                                 $poster = null;
+											else
+												$video_posters[] = $poster;
                                             $videos[$objSubfiles->path] = array
                                             (
                                                 'id' => $objSubfiles->id,
@@ -292,8 +273,7 @@ abstract class Module extends \Module
                                                 'name' => $objFile->basename,
                                                 'singleSRC' => $objSubfiles->path,
                                                 'filesModel' => $objSubfiles->current(),
-                                                'poster' => $poster,
-                                                'isHidden' => !FE_USER_LOGGED_IN && $objSubfiles->hidden
+                                                'poster' => $poster
                                             );
                                             continue;
                                         }
@@ -317,14 +297,17 @@ abstract class Module extends \Module
                                             'uuid' => $objSubfiles->uuid,
                                             'name' => $objFile->basename,
                                             'singleSRC' => $objSubfiles->path,
-                                            'filesModel' => $objSubfiles->current(),
-                                            'isHidden' => !FE_USER_LOGGED_IN && $objSubfiles->hidden
+                                            'filesModel' => $objSubfiles->current()
                                         );
 
                                         $auxDate[] = $objFile->mtime;
                                     }
                                 }
                             }
+                            foreach ($images as $path => $image) {
+                            	if (in_array($path, $video_posters))
+                            		unset($images[$path]);
+							}
                             if ($article['orderSRC']) {
                                 $tmp = \Contao\StringUtil::deserialize($article['orderSRC']);
 

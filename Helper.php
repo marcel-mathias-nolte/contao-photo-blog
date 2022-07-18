@@ -68,7 +68,7 @@ class Helper extends \Frontend
 	 */
 	public function inserttagReplacer($strTag)
 	{
-		list($strTag, $strValue) = explode('::',$strTag);
+	    strpos($strTag,'::') > 0 ? list($strTag, $strValue) = explode('::',$strTag) : false;
 		switch($strTag)
 		{
 			case 'news4ward':
