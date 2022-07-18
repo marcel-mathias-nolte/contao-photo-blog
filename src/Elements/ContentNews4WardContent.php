@@ -18,7 +18,7 @@ class ContentNews4WardContent extends \Contao\ContentElement {
 
 	public function generate() {
 		if ($this->ptable == 'tl_news4ward_article') {
-			$this->objPost = MarcelMathiasNolte\ContaoPhotoBlogBundle\Model\ArticleModel::findByPk($this->pid);
+			$this->objPost = \MarcelMathiasNolte\ContaoPhotoBlogBundle\Model\ArticleModel::findByPk($this->pid);
 		}
         $request = \System::getContainer()->get('request_stack')->getCurrentRequest();
         if ($request && \System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request)) {

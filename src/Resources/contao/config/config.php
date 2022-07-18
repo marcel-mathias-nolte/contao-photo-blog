@@ -37,36 +37,36 @@ $GLOBALS['TL_PERMISSIONS'][]                    = 'news4ward_itemRights';
 //$GLOBALS['TL_HOOKS']['getSearchablePages'][]  = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'getSearchablePages');
 
 // Cronjob for feed generation
-$GLOBALS['TL_CRON']['daily'][]                  = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'generateFeeds');
+$GLOBALS['TL_CRON']['daily'][]                  = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'generateFeeds');
 
 // hook for custom inserttags
-$GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'inserttagReplacer');
-$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\ArchiveMenuHelper','archiveFilter');
-$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\CategoriesHelper','categoryFilter');
-$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','ortFilter');
-$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','stadtFilter');
-$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','fotografFilter');
-$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','modelFilter');
-$GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\CategoriesHelper','categoryParseArticle');
-$GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','ortParseArticle');
-$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\TagsHelper','listFilter');
-$GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\TagsHelper','tagsParseArticle');
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][]     = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'inserttagReplacer');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\ArchiveMenuHelper','archiveFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\CategoriesHelper','categoryFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','ortFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','stadtFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','fotografFilter');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','modelFilter');
+$GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\CategoriesHelper','categoryParseArticle');
+$GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\OrtHelper','ortParseArticle');
+$GLOBALS['TL_HOOKS']['News4wardListFilter'][]   = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\TagsHelper','listFilter');
+$GLOBALS['TL_HOOKS']['News4wardParseArticle'][] = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\TagsHelper','tagsParseArticle');
 
 if (TL_MODE == 'BE')
 {
 	// hook for ajax requests
-	$GLOBALS['TL_HOOKS']['executePreActions'][] = array('MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'ajaxHandler');
+	$GLOBALS['TL_HOOKS']['executePreActions'][] = array('\MarcelMathiasNolte\ContaoPhotoBlogBundle\Helper', 'ajaxHandler');
 }
 
 // Models
-$GLOBALS['TL_MODELS']['tl_news4ward_article']   = 'MarcelMathiasNolte\ContaoPhotoBlogBundle\Model\ArticleModel';
-$GLOBALS['TL_MODELS']['tl_news4ward']           = 'MarcelMathiasNolte\ContaoPhotoBlogBundle\Model\ArchiveModel';
+$GLOBALS['TL_MODELS']['tl_news4ward_article']   = '\MarcelMathiasNolte\ContaoPhotoBlogBundle\Model\ArticleModel';
+$GLOBALS['TL_MODELS']['tl_news4ward']           = '\MarcelMathiasNolte\ContaoPhotoBlogBundle\Model\ArchiveModel';
 
-$GLOBALS['BE_FFL']['tags'] = 'MarcelMathiasNolte\ContaoPhotoBlogBundle\Widgets\TagsWidget';
+$GLOBALS['BE_FFL']['tags'] = '\MarcelMathiasNolte\ContaoPhotoBlogBundle\Widgets\TagsWidget';
 
 
 array_insert($GLOBALS['TL_CTE'], 2, array(
     'text' => array(
-        'news4ward_content' => 'MarcelMathiasNolte\ContaoPhotoBlogBundle\Elements\ContentNews4WardContent'
+        'news4ward_content' => '\MarcelMathiasNolte\ContaoPhotoBlogBundle\Elements\ContentNews4WardContent'
     )
 ));

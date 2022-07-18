@@ -878,20 +878,20 @@ class tl_news4ward_article extends Backend
 		$strReturn .= '<a href="#" onclick="News4ward.showStatusToggler(this,\''.$arrRow['id'].'\', event || window.event); return false;">';
 		if($arrRow['status'] == 'draft')
 		{
-			$strReturn .= $this->generateImage(	'system/modules/news4ward/assets/draft.png',
+			$strReturn .= $this->generateImage(	'bundles/contaophotoblog/draft.png',
 												$GLOBALS['TL_LANG']['tl_news4ward_article']['stati'][$arrRow['status']],
 												'title="'.$GLOBALS['TL_LANG']['tl_news4ward_article']['stati'][$arrRow['status']].'"');
 		}
 		else if($arrRow['status'] == 'review')
 		{
-			$strReturn .= $this->generateImage('system/modules/news4ward/assets/review.png',
+			$strReturn .= $this->generateImage('bundles/contaophotoblog/review.png',
 												$GLOBALS['TL_LANG']['tl_news4ward_article']['stati'][$arrRow['status']],
 												'title="'.$GLOBALS['TL_LANG']['tl_news4ward_article']['stati'][$arrRow['status']].'"');
 		}
 		else
 		{
 			$published = ($arrRow['status'] == 'published' && ($arrRow['start'] == '' || $arrRow['start'] < time()) && ($arrRow['stop'] == '' || $arrRow['stop'] > time()));
-			$strReturn .= $this->generateImage('system/modules/news4ward/assets/'.($published ? '' : 'not').'published.png','','');
+			$strReturn .= $this->generateImage('bundles/contaophotoblog/'.($published ? '' : 'not').'published.png','','');
 		}
 		$strReturn .= '</a>';
 
@@ -900,7 +900,7 @@ class tl_news4ward_article extends Backend
 		foreach($GLOBALS['TL_DCA']['tl_news4ward_article']['fields']['status']['options'] as $status)
 		{
 			$strReturn .= '<a href="#" onclick="News4ward.setStatus(this,\''.$arrRow['id'].'\',\''.$status.'\', event || window.event); return false;">';
-			$strReturn .= $this->generateImage(	'system/modules/news4ward/assets/'.$status.'.png',
+			$strReturn .= $this->generateImage(	'bundles/contaophotoblog/'.$status.'.png',
 												$GLOBALS['TL_LANG']['tl_news4ward_article']['stati'][$status],
 												'title="'.$GLOBALS['TL_LANG']['tl_news4ward_article']['stati'][$status].'"');
 			$strReturn .= ' '.$GLOBALS['TL_LANG']['tl_news4ward_article']['stati'][$status];
@@ -911,11 +911,11 @@ class tl_news4ward_article extends Backend
 
 		if($arrRow['highlight'])
 		{
-			$strReturn .= ' '.$this->generateImage('system/modules/news4ward/assets/highlight.png',$GLOBALS['TL_LANG']['tl_news4ward_article']['highlight'][0],'title="'.$GLOBALS['TL_LANG']['tl_news4ward_article']['highlight'][0].'"');
+			$strReturn .= ' '.$this->generateImage('bundles/contaophotoblog/highlight.png',$GLOBALS['TL_LANG']['tl_news4ward_article']['highlight'][0],'title="'.$GLOBALS['TL_LANG']['tl_news4ward_article']['highlight'][0].'"');
 		}
 		if($arrRow['sticky'])
 		{
-			$strReturn .= ' '.$this->generateImage('system/modules/news4ward/assets/sticky.png',$GLOBALS['TL_LANG']['tl_news4ward_article']['sticky'][0],'title="'.$GLOBALS['TL_LANG']['tl_news4ward_article']['sticky'][0].'"');
+			$strReturn .= ' '.$this->generateImage('bundles/contaophotoblog/sticky.png',$GLOBALS['TL_LANG']['tl_news4ward_article']['sticky'][0],'title="'.$GLOBALS['TL_LANG']['tl_news4ward_article']['sticky'][0].'"');
 		}
 		$strReturn .= '</div>';
 
