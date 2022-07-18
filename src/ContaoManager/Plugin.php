@@ -25,7 +25,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(ContaoPhotoBlogBundle::class)
+            BundleConfig::create(MarcelMathiasNolte\ContaoPhotoBlogBundle\ContaoPhotoBlogBundle::class)
                 ->setLoadAfter([
                     ContaoCoreBundle::class
                 ]),
