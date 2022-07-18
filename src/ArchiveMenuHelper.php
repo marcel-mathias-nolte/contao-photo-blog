@@ -12,7 +12,7 @@
  */
 
 
-namespace Psi\News4ward;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle;
 
 class ArchiveMenuHelper extends \System
 {

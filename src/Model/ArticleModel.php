@@ -1,6 +1,6 @@
 <?php
 
-namespace Psi\News4ward\Model;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle\Model;
 
 class ArticleModel extends \Model
 {

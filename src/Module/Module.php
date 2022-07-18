@@ -12,7 +12,7 @@
  */
 
 
-namespace Psi\News4ward\Module;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle\Module;
 
 abstract class Module extends \Module
 {
@@ -197,7 +197,7 @@ abstract class Module extends \Module
                         if (!$article['protected']) {
                             while ($objFiles->next()) {
                                 // Continue if the files has been processed or does not exist
-                                if (isset($images[$objFiles->path]) || !file_exists(\Contao\System::getContainer()->getParameter('kernel.project_dir') . '/' . $objFiles->path)) {
+                                if (isset($images[$objFiles->path]) || !file_exists(\Contao\System::getContainer()->getParameter('kernel.project_dir') . 'Module.php/' . $objFiles->path)) {
                                     continue;
                                 }
 

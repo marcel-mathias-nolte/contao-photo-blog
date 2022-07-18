@@ -12,7 +12,7 @@
  */
 
 
-namespace Psi\News4ward;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle;
 
 class CategoriesHelper extends \Controller
 {
@@ -40,7 +40,7 @@ class CategoriesHelper extends \Controller
 	/**
 	 * Add category link to the template
 	 *
-	 * @param \Psi\News4ward\Module\Module $obj
+	 * @param \MarcelMathiasNolte\ContaoPhotoBlogBundle\Module\Module $obj
 	 * @param array $arrArticle
 	 * @param FrontendTemplate $objTemplate
 	 */

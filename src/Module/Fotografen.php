@@ -11,15 +11,15 @@
  * @licence LGPL
  */
 
-namespace Psi\News4ward\Module;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle\Module;
 
-class Models extends Module
+class Fotografen extends Module
 {
     /**
    	 * Template
    	 * @var string
    	 */
-   	protected $strTemplate = 'mod_news4ward_models';
+   	protected $strTemplate = 'mod_news4ward_fotografen';
 
 
     /**
@@ -32,7 +32,7 @@ class Models extends Module
 		{
 			$objTemplate = new \BackendTemplate('be_wildcard');
 
-			$objTemplate->wildcard = '### News4ward Models ###';
+			$objTemplate->wildcard = '### News4ward Fotografen ###';
 			$objTemplate->title = $this->headline;
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
@@ -51,7 +51,7 @@ class Models extends Module
 
 		$strBuffer = parent::generate();
 
-		if (count($this->Template->models) == 0)
+		if (count($this->Template->fotografen) == 0)
 		{
 			return '';
 		}
@@ -65,19 +65,19 @@ class Models extends Module
 	 */
 	protected function compile()
     {
-        $arrModels = [];
-		$objModels = $this->Database->execute('
+        $arrFotografen = [];
+		$objFotografen = $this->Database->execute('
             SELECT 
-                comodels
+                fotografen
             FROM 
                 tl_news4ward_article
             WHERE 
                 tl_news4ward_article.pid IN ('.implode(',',$this->news_archives).')');
 
 		// just return if on empty result
-		if(!$objModels->numRows)
+		if(!$objFotografen->numRows)
 		{
-			$this->Template->models = array();
+			$this->Template->fotografen = array();
 			return;
 		}
 
@@ -93,22 +93,22 @@ class Models extends Module
 			$objJumpTo = $GLOBALS['objPage'];
 		}
 
-		while($objModels->next())
+		while($objFotografen->next())
 		{
-			$comodels = deserialize($objModels->comodels, true);
-			foreach ($comodels as $model) {
-			    isset($arrModels[$model['model']]) ? $arrModels[$model['model']]['count']++ : $arrModels[$model['model']] = ['count' => 1];
-                if (!isset($arrModels[$model['model']]['href'])) {
-                    $arrModels[$model['model']]['href'] = $this->generateFrontendUrl($objJumpTo->row(),'/model/'.urlencode($model['model']));
-                    $arrModels[$model['model']]['active'] = (urldecode($this->Input->get('model')) === $model['model']);
+			$fotografen = deserialize($objFotografen->fotografen, true);
+			foreach ($fotografen as $fotograf) {
+			    isset($arrFotografen[$fotograf['fotograf']]) ? $arrFotografen[$fotograf['fotograf']]['count']++ : $arrFotografen[$fotograf['fotograf']] = ['count' => 1];
+                if (!isset($arrFotografen[$fotograf['fotograf']]['href'])) {
+                    $arrFotografen[$fotograf['fotograf']]['href'] = $this->generateFrontendUrl($objJumpTo->row(),'/fotograf-in/'.urlencode($fotograf['fotograf']));
+                    $arrFotografen[$fotograf['fotograf']]['active'] = (urldecode($this->Input->get('fotograf-in')) === $fotograf['fotograf']);
                 }
             }
 		}
-		uasort($arrModels, function($a, $b) {
+		uasort($arrFotografen, function($a, $b) {
 		    return $a['count'] <=> $b['count'];
         });
 
-		$this->Template->models = $arrModels;
+		$this->Template->fotografen = $arrFotografen;
 	}
 
 

@@ -30,7 +30,7 @@
   },
   "autoload": {
     "psr-4": {
-      "MarcelMathiasNolte\\ContaoPhotoBlogBundle\\": "src/"
+      "MarcelMathiasNolte\ContaoPhotoBlogBundle\\": "src/"
     }
   },
   "require": {
@@ -50,22 +50,6 @@
     "psi/news4ward_titleSearch": "Filter listing within title searchbox",
     "psi/news4ward_metaTitle": "Extra field for page title",
     "christianbarkowsky/news4ward_robots": "Extra robots-tag field for SEO optimisation"
-  },
-  "replace": {
-    "contao-legacy/news4ward": "self.version"
-  },
-  "extra": {
-    "contao": {
-      "sources": {
-        "": "system/modules/news4ward"
-      },
-      "runonce": [
-        "runonce/32update.php"
-      ]
-    },
-    "branch-alias": {
-      "dev-master": "2.1.x-dev"
-    }
   },
   "config": {
     "allow-plugins": {

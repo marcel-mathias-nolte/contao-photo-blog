@@ -12,7 +12,7 @@
  */
 
 
-namespace Psi\News4ward;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundled;
 
 class OrtHelper extends \Controller
 {
@@ -108,7 +108,7 @@ class OrtHelper extends \Controller
 	/**
 	 * Add category link to the template
 	 *
-	 * @param \Psi\News4ward\Module\Module $obj
+	 * @param \MarcelMathiasNolte\ContaoPhotoBlogBundle\Module\Module $obj
 	 * @param array $arrArticle
 	 * @param FrontendTemplate $objTemplate
 	 */

@@ -10,7 +10,7 @@
  * @filesource
  * @licence LGPL
  */
-namespace Psi\News4ward;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle;
 
 class TagsHelper extends \Controller
 {

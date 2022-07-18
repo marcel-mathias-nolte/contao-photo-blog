@@ -11,7 +11,7 @@
  * @licence LGPL
  */
 
-namespace Psi\News4ward;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle;
 
 use Contao\System;
 use Contao\StringUtil;

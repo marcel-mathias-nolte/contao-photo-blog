@@ -11,7 +11,7 @@
  * @licence LGPL
  */
 
-namespace Psi\News4ward\Module;
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle\Module;
 
 class Reader extends Module
 {
