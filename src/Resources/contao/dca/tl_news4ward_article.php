@@ -676,7 +676,7 @@ class tl_news4ward_article extends Backend
      */
     public function getCameras($dc)
     {
-        return $this->getCategoriesByPid($dc->activeRecord->pid);
+        return $this->getCamerasByPid($dc->activeRecord->pid);
     }
 
     /**
