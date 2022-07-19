@@ -52,8 +52,8 @@ class TagsWidget extends \Widget
 	public function generate()
 	{
 		// load autocompleter
-		$GLOBALS['TL_JAVASCRIPT'][]  = 'system/modules/tagsWidget/html/mooTagify.js';
-		$GLOBALS['TL_CSS'][''] 		= 'system/modules/tagsWidget/html/mooTagify.css';
+		$GLOBALS['TL_JAVASCRIPT'][]  = 'bundles/contaophotoblog/mooTagify.js';
+		$GLOBALS['TL_CSS'][''] 		= 'bundles/contaophotoblog/mooTagify.css';
 
 		$this->loadLanguageFile('widget_tags');
 
