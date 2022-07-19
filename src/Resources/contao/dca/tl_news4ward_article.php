@@ -937,7 +937,7 @@ class tl_news4ward_article extends Backend
 
         $objFile = \Contao\FilesModel::findByUuid($arrRow['facebookImage']);
 
-        $strReturn .= '<div style="display: inline-block; float: left; margin-right: 2em; width 6em; height: 6em; background-size-cover; background-position: center center; ' . ($objFile != null ? "background-image: url('" . $objFile->path . "');" : '') . '"></div>';
+        $strReturn .= '<div style="display: inline-block; float: left; margin-right: 2em; width: 12em; height: 12em; background-size: cover; background-position: center center; ' . ($objFile != null ? "background-image: url('" . $objFile->path . "');" : '') . '"></div>';
 
         // show the autor
         if(!empty($arrRow['author']))
