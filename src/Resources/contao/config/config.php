@@ -1,11 +1,13 @@
 <?php
 
 // BE-Module
+use MarcelMathiasNolte\ContaoPhotoBlogBundle\TagsWidgetResponder;
+
 $GLOBALS['BE_MOD']['content']['news4ward'] = array(
 	'tables'                                    => array('tl_news4ward','tl_news4ward_article','tl_content'),
-	'icon'                                      => 'system/modules/news4ward/assets/icon.png',
-	'javascript'                                => 'system/modules/news4ward/assets/News4ward.js',
-	'stylesheet'                                => 'system/modules/news4ward/assets/News4ward.css',
+	'icon'                                      => 'bundles/contaophotoblog/icon.png',
+	'javascript'                                => 'bundles/contaophotoblog/News4ward.js',
+	'stylesheet'                                => 'bundles/contaophotoblog/News4ward.css',
 );
 
 // FE-Modules
@@ -70,3 +72,9 @@ array_insert($GLOBALS['TL_CTE'], 2, array(
         'news4ward_content' => '\MarcelMathiasNolte\ContaoPhotoBlogBundle\Elements\ContentNews4WardContent'
     )
 ));
+
+if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'tags-widget-ajax') {
+
+    $x = new TagsWidgetResponder();
+    die();
+}

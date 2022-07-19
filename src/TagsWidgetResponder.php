@@ -1,24 +1,7 @@
 <?php
 
-/**
-* Initialize the system
-*/
-$dir = __DIR__;
 
-while($dir != '.' && $dir != '/' && !is_file($dir.'/system/initialize.php'))
-{
-	$dir = dirname($dir);
-}
-
-if(!is_file($dir.'/system/initialize.php'))
-{
-	echo 'Could not find initialize.php!';
-	exit(1);
-}
-
-define('TL_MODE', 'BE');
-require($dir.'/system/initialize.php');
-
+namespace MarcelMathiasNolte\ContaoPhotoBlogBundle;
 
 class TagsWidgetResponder extends \Controller
 {
@@ -29,16 +12,16 @@ class TagsWidgetResponder extends \Controller
 		parent::__construct();
 
 		$this->User->authenticate();
-		System::loadLanguageFile('default');
+		\System::loadLanguageFile('default');
 
 		$this->import('Database');
-		
+
 		// little validation
 		$this->tbl = $this->Input->get('tbl');
 		$this->fld = $this->Input->get('fld');
 		if(!preg_match('~^[a-z0-9_\-]+$~i',$this->tbl)) die('ERROR 201');
 		if(!preg_match('~^[a-z0-9_\-]+$~i',$this->fld)) die('ERROR 202');
-		
+
 		// load the DCA
 		$this->loadDataContainer($this->tbl);
 		$dca = $GLOBALS['TL_DCA'][$this->tbl]['fields'][$this->fld];
@@ -65,4 +48,3 @@ class TagsWidgetResponder extends \Controller
 	}
 }
 
-$x = new TagsWidgetResponder();

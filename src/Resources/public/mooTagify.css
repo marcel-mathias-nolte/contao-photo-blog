@@ -28,7 +28,7 @@
 	background-image: -o-linear-gradient(bottom, #CCC 0, #EEE 60%);
 	background-image: -ms-linear-gradient(top, #CCC 0, #EEE 60%);
 	background-image: linear-gradient(top,#CCC 0,#EEE 60%);
-
+    color: #000;
 
 }
 .tagsWidget div.tag:hover {
@@ -66,7 +66,10 @@
     -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     -o-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
     -ms-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-}
+    color: #000;
+}.tagsWidget div.autocompleteWrapper * {
+     color: #000;
+ }
 .tagsWidget div.autocompleteOption {
     padding: 4px;
     padding-bottom: 2px;
@@ -84,5 +87,5 @@
 }
 .tagsWidget div.autocompleteOptionSelected, div.autocompleteOptionSelected:hover, .tagsWidget span.HL, .tagsWidget div.autocompleteOption:hover, div.autocompleteOptionOver {
     background: #EBFDD7 url(../../../themes/default/images/headline.gif) left bottom;
-	color: #fff;
+	color: #000;
 }
