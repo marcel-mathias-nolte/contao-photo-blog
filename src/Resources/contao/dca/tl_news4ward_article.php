@@ -935,6 +935,10 @@ class tl_news4ward_article extends Backend
         // the title
         $strReturn = ' <div style="font-weight:bold;margin-bottom:5px;line-height:18px;height:18px;">'.$this->generateImage('articles.gif','','style="vertical-align:bottom;"').' '.$arrRow['title'].'</div>';
 
+        $objFile = \Contao\FilesModel::findByUuid($arrRow['facebookImage']);
+
+        $strReturn .= '<div style="display: inline-block; float: left; margin-right: 2em; width 6em; height: 6em; background-size-cover; background-position: center center; ' . ($objFile != null ? "background-image: url('" . $objFile->path . "');" : '') . '"></div>';
+
         // show the autor
         if(!empty($arrRow['author']))
         {
